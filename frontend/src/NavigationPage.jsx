@@ -119,8 +119,6 @@ function NavigationPage() {
     const priorityQueue = new PriorityQueue();
     priorityQueue.enqueue(start, 0);
 
-    const startTime = performance.now();
-
     while (!priorityQueue.isEmpty()) {
       const { item: currentNode } = priorityQueue.dequeue();
       nodesExpanded++;
@@ -141,15 +139,11 @@ function NavigationPage() {
       }
     }
 
-    const endTime = performance.now();
-    const dijkstraTime = endTime - startTime;
-
     return {
       distances,
       previousNodes,
       directions,
       performance: {
-        time: dijkstraTime,
         nodesExpanded,
       },
     };
@@ -213,6 +207,20 @@ function NavigationPage() {
     };
   };
 
+  const measureAlgorithmTime = (graph, start) => {
+    const startTime = performance.now();
+    const result = dijkstra(graph, start);
+    const endTime = performance.now();
+
+    return {
+      ...result,
+      performance: {
+        ...result.performance,
+        time: endTime - startTime,
+      },
+    };
+  };
+
   useEffect(() => {
     if (!fromLocation || !toLocation) {
       return;
@@ -246,7 +254,7 @@ function NavigationPage() {
       return;
     }
 
-    const result = dijkstra(floorGraph, fromLocation);
+    const result = measureAlgorithmTime(floorGraph, fromLocation);
 
     const pathDirections = result.directions[toLocation];
 
@@ -302,6 +310,17 @@ function NavigationPage() {
     setEstimatedTime(simpleETA);
   }, [fromLocation, toLocation]);
 
+  const formatProcessingTime = (timeMs) => {
+    return `${timeMs.toFixed(4)} ms`;
+    // if (timeMs >= 1) {
+    //   return `${timeMs.toFixed(2)} ms`;
+    // } else if (timeMs >= 0.001) {
+    //   return `${(timeMs * 1000).toFixed(2)} μs`;
+    // } else {
+    //   return `${(timeMs * 1000000).toFixed(0)} ns`;
+    // }
+  };
+
   return (
     <div className="navigation-container">
       <div className="navigation-topbar">
@@ -327,7 +346,7 @@ function NavigationPage() {
       </div>
       <div className="navigation-info-row">
         <div className="navigation-eta-info">Total distance: {totalDistance.toFixed(1)}m</div>
-        <div className="navigation-speed-info">Processing Speed: {processingTime.toFixed(4)} ms</div>
+        <div className="navigation-speed-info">Processing Time: {formatProcessingTime(processingTime)}</div>
       </div>
     </div>
   );

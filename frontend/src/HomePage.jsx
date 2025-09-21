@@ -73,6 +73,8 @@ function HomePage() {
           },
           (decodedText) => {
             if (LOCATIONS.includes(decodedText)) {
+              html5QrCode.stop().catch(() => {});
+              isRunning = false;
               setSelectedLocation(decodedText);
               navigate("/choosedestination", { state: { location: decodedText } });
             } else {
