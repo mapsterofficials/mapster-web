@@ -1,0 +1,16 @@
+.splash-screen-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.splash-screen-logo {
+  width: 200px;
+  max-width: 80%;
+}

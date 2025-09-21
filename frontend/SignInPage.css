@@ -1,0 +1,59 @@
+.sign-in-wrapper {
+  min-height: 75vh;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.sign-in-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.sign-in-input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: none;
+  background: #f2f3f7;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.sign-in-links {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.forgot-password {
+  color: #a3a3a3;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.or-sign-in {
+  color: #a3a3a3;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}

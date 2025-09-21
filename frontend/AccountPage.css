@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap");
+
+.account-container {
+  background: #fcfafd;
+  min-height: 100vh;
+  width: 100%;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  padding: 0;
+}
+
+.account-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 32px 0 16px 0;
+}
+
+.account-back-btn {
+  position: absolute;
+  left: 16px;
+  top: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.account-back-arrow {
+  font-size: 22px;
+  color: #232a54;
+}
+
+.account-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #232a54;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+  padding: 0 16px;
+}
+
+.account-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #232a54;
+  margin-bottom: 4px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.account-input {
+  background: #f3f5f7;
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 15px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: #232a54;
+  margin-bottom: 8px;
+}
+
+.account-input:focus {
+  outline: 2px solid #232a54;
+}
+
+.account-btn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 16px;
+}
+
+.account-cancel-btn,
+.account-save-btn {
+  background: #f3f5f7;
+  color: #232a54;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: none;
+  width: auto;
+  min-width: 0;
+  display: inline-block;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.account-save-btn {
+  background: #232a54;
+  color: #fff;
+}

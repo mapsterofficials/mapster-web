@@ -1,0 +1,116 @@
+.settings-container {
+  background: #faf8fc;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+.settings-container.dark {
+  background: #232a54;
+}
+.settings-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 32px 0 16px 0;
+}
+
+.settings-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #232a54;
+}
+
+.settings-list {
+  margin-top: 24px;
+}
+
+.settings-list-item {
+  display: flex;
+  align-items: center;
+  padding: 18px 0 18px 24px;
+  border-bottom: 1px solid #e5e5ef;
+  font-size: 17px;
+  color: #232a54;
+  background: transparent;
+  cursor: pointer;
+}
+
+.settings-list-item:last-child {
+  border-bottom: none;
+}
+.settings-icon {
+  width: 28px;
+  height: 28px;
+  margin-right: 16px;
+  display: inline-block;
+}
+.settings-icon.profile {
+  background: url("./assets/profile_icon.svg") no-repeat center/contain;
+}
+.settings-icon.about {
+  background: url("./assets/about_icon.svg") no-repeat center/contain;
+}
+.settings-icon.dark {
+  background: url("./assets/dark_icon.svg") no-repeat center/contain;
+}
+.settings-label {
+  flex: 1;
+}
+
+.settings-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  margin-right: 18px;
+}
+.settings-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.settings-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e5e5ef;
+  border-radius: 24px;
+  transition: 0.4s;
+}
+.settings-switch input:checked + .settings-slider {
+  background-color: #232a54;
+}
+.settings-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+.settings-switch input:checked + .settings-slider:before {
+  transform: translateX(20px);
+}
+.settings-logout-btn {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  bottom: 32px;
+  height: 44px;
+  background: #232a54;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
