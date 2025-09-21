@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SettingsPage.css";
-import profileIcon from "./assets/profile_icon.svg";
-import aboutIcon from "./assets/about_us_icon.svg";
-import darkIcon from "./assets/dark_mode_icon.svg";
+import profileIcon from "../assets/profile_icon.svg";
+import aboutIcon from "../assets/about_us_icon.svg";
+import darkIcon from "../assets/dark_mode_icon.svg";
 
 function SettingsPage() {
   const navigate = useNavigate();

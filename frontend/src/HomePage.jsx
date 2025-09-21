@@ -2,11 +2,11 @@ import React, { useRef, useEffect, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
-import gallery_icon from "./assets/gallery_icon.svg";
-import flash_icon from "./assets/flash_icon.svg";
-import camera_icon from "./assets/camera_icon.svg";
-import gear_icon from "./assets/gear_icon.svg";
-import chat_icon from "./assets/chat_icon.svg";
+import gallery_icon from "../assets/gallery_icon.svg";
+import flash_icon from "../assets/flash_icon.svg";
+import camera_icon from "../assets/camera_icon.svg";
+import gear_icon from "../assets/gear_icon.svg";
+import chat_icon from "../assets/chat_icon.svg";
 
 function HomePage() {
   const navigate = useNavigate();

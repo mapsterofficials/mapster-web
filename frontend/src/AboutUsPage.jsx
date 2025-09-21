@@ -1,8 +1,8 @@
-import mapster_logo_large from "./assets/mapster_logo_large.png";
-import qr_icon from "./assets/qr_icon.svg";
-import fast_icon from "./assets/fast_icon.svg";
-import path_icon from "./assets/path_icon.svg";
-import gps_icon from "./assets/gps_icon.svg";
+import mapster_logo_large from "../assets/mapster_logo_large.png";
+import qr_icon from "../assets/qr_icon.svg";
+import fast_icon from "../assets/fast_icon.svg";
+import path_icon from "../assets/path_icon.svg";
+import gps_icon from "../assets/gps_icon.svg";
 import "./AboutUsPage.css";
 import { useNavigate } from "react-router-dom";
 

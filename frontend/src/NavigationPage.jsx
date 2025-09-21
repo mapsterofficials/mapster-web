@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./NavigationPage.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import stairIcon from "./assets/stair_icon.svg";
-import walkIcon from "./assets/walk_icon.svg";
-import rightArrowIcon from "./assets/right_arrow_icon.svg";
-import leftArrowIcon from "./assets/left_arrow_icon.svg";
-import passageIcon from "./assets/passage_icon.svg";
-import endNavIcon from "./assets/end_nav_icon.svg";
+import stairIcon from "../assets/stair_icon.svg";
+import walkIcon from "../assets/walk_icon.svg";
+import rightArrowIcon from "../assets/right_arrow_icon.svg";
+import leftArrowIcon from "../assets/left_arrow_icon.svg";
+import passageIcon from "../assets/passage_icon.svg";
+import endNavIcon from "../assets/end_nav_icon.svg";
 
 function NavigationPage() {
   const navigate = useNavigate();
@@ -214,19 +214,11 @@ function NavigationPage() {
   };
 
   useEffect(() => {
-    console.log("NavigationPage: From =", fromLocation, "To =", toLocation);
-    console.log("Available locations:", Object.keys(floorGraph));
-
     if (!fromLocation || !toLocation) {
-      console.log("Missing from or to location");
       return;
     }
 
     if (!floorGraph[fromLocation] || !floorGraph[toLocation]) {
-      console.error("Invalid locations:", fromLocation, toLocation);
-      console.log("FromLocation exists:", !!floorGraph[fromLocation]);
-      console.log("ToLocation exists:", !!floorGraph[toLocation]);
-
       setSteps([
         {
           icon: endNavIcon,
@@ -254,16 +246,11 @@ function NavigationPage() {
       return;
     }
 
-    console.log("Running Dijkstra algorithm...");
-
     const result = dijkstra(floorGraph, fromLocation);
-    console.log("Algorithm result:", result);
 
     const pathDirections = result.directions[toLocation];
-    console.log("Path directions:", pathDirections);
 
     if (!pathDirections || pathDirections.length === 0) {
-      console.log("No path found");
       setSteps([
         {
           icon: endNavIcon,
@@ -277,12 +264,10 @@ function NavigationPage() {
       return;
     }
 
-    console.log("Converting to steps...");
     const generatedSteps = [];
     let cumulativeDistance = 0;
 
     pathDirections.forEach(([location, direction, distance], index) => {
-      console.log(`Step ${index + 1}: ${direction} to ${location}, distance: ${distance}m`);
       cumulativeDistance += distance;
       generatedSteps.push({
         location,
@@ -292,8 +277,6 @@ function NavigationPage() {
         text: `${direction} to ${location}`,
       });
     });
-
-    console.log("Total distance:", cumulativeDistance);
 
     generatedSteps.push({
       location: toLocation,
@@ -312,11 +295,6 @@ function NavigationPage() {
 
     const simpleETA = calculateSimpleETA(cumulativeDistance);
     const processingMetrics = calculateProcessingMetrics(result.performance, Object.keys(floorGraph).length, pathDirections.length);
-
-    console.log("Final calculations:");
-    console.log("- ETA:", simpleETA, "minutes");
-    console.log("- Processing time:", processingMetrics.executionTime, "ms");
-    console.log("- Total distance:", cumulativeDistance, "m");
 
     setSteps(finalSteps);
     setTotalDistance(cumulativeDistance);

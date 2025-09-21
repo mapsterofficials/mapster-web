@@ -1,38 +1,39 @@
+import mapster_logo from "../assets/mapster_logo.png";
+import google_icon from "../assets/google.png";
+import FullWidthButton from "./FullWidthButton";
+import "./SignInPage.css";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FullWidthButton from "./FullWidthButton";
-import google_icon from "./assets/google.png";
 
-function SignUpPage() {
+function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
-  async function handleSignUp() {
+  async function handleSignIn() {
     setError("");
     setSuccess("");
     try {
-      const res = await fetch("http://localhost:8080/api/auth/signup", {
+      const res = await fetch("http://localhost:8080/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, password }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
       if (res.ok) {
         if (data.token) {
           localStorage.setItem("authToken", data.token);
         }
-        setSuccess("Signup successful!");
+        setSuccess("Login successful!");
         setTimeout(() => {
           navigate("/home");
         }, 1000);
       } else {
-        setError(data.message || "Signup failed");
+        setError(data.message || "Login failed");
       }
     } catch (err) {
       setError("Network error");
@@ -41,11 +42,9 @@ function SignUpPage() {
 
   return (
     <div className="sign-in-wrapper">
-      <h2 style={{ fontWeight: 700, marginBottom: 24 }}>Sign Up</h2>
+      <img className="sign-in-logo" src={mapster_logo} alt="Logo" />
       <div className="input-group">
-        <input type="text" className="sign-in-input" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <input type="email" className="sign-in-input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="tel" className="sign-in-input" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <input type="email" className="sign-in-input" placeholder="Email id" value={email} onChange={(e) => setEmail(e.target.value)} />
         <div style={{ position: "relative" }}>
           <input
             type={showPassword ? "text" : "password"}
@@ -74,21 +73,41 @@ function SignUpPage() {
       </div>
       {error && <div style={{ color: "#d32f2f", marginBottom: 8 }}>{error}</div>}
       {success && <div style={{ color: "#388e3c", marginBottom: 8 }}>{success}</div>}
-      <FullWidthButton text="Sign Up" onClick={handleSignUp} />
-      <div className="sign-in-links" style={{ marginBottom: 0 }}>
-        <div className="or-sign-in">or Sign up with</div>
+      <FullWidthButton text="Sign in" onClick={handleSignIn} />
+      <div className="sign-in-links">
+        <a
+          href="#"
+          className="forgot-password"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/forgotpassword");
+          }}
+        >
+          Forgot Password ?
+        </a>
+        <div className="or-sign-in">or Sign in with</div>
       </div>
       <FullWidthButton
         text={
           <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
             <img src={google_icon} alt="Google" style={{ width: 24, height: 24 }} />
-            Sign up with Google
+            Sign in with Google
           </span>
         }
         onClick={() => {}}
       />
+      <a
+        href="#"
+        className="forgot-password"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate("/signup");
+        }}
+      >
+        Don't have an account ?
+      </a>
     </div>
   );
 }
 
-export default SignUpPage;
+export default SignInPage;
