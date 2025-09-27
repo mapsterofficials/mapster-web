@@ -67,19 +67,16 @@ router.put("/update", authenticateToken, async (req, res) => {
   }
 });
 
-// Forgot Password
 router.post("/forgot-password", async (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ message: "Email is required" });
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "User not found" });
-    // Generate token
     const token = crypto.randomBytes(32).toString("hex");
     user.resetPasswordToken = token;
-    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    user.resetPasswordExpires = Date.now() + 3600000;
     await user.save();
-    // Send email
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -100,7 +97,6 @@ router.post("/forgot-password", async (req, res) => {
   }
 });
 
-// Reset Password
 router.post("/reset-password", async (req, res) => {
   const { email, token, newPassword } = req.body;
   if (!email || !token || !newPassword) return res.status(400).json({ message: "Missing required fields" });
