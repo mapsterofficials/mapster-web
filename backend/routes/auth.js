@@ -1,6 +1,8 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
+import nodemailer from "nodemailer";
 import User from "../models/User.js";
 
 const router = express.Router();
@@ -8,9 +10,6 @@ const router = express.Router();
 router.post("/signup", async (req, res) => {
   const { name, email, phone, password } = req.body;
   try {
-    console.log("Checking for existing user with email:", email);
-    console.log("checking for existing user with name:", name);
-    console.log("checking for existing user with phone number:", phone);
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: "User already exists" });
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -65,6 +64,56 @@ router.put("/update", authenticateToken, async (req, res) => {
     res.json({ user });
   } catch (err) {
     res.status(500).json({ message: "Error updating user", error: err });
+  }
+});
+
+// Forgot Password
+router.post("/forgot-password", async (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ message: "Email is required" });
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: "User not found" });
+    // Generate token
+    const token = crypto.randomBytes(32).toString("hex");
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    await user.save();
+    // Send email
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.REPORT_EMAIL_USER,
+        pass: process.env.REPORT_EMAIL_PASS,
+      },
+    });
+    const resetUrl = `${process.env.FRONTEND_URL || "http://localhost:5173"}/reset-password?token=${token}&email=${email}`;
+    await transporter.sendMail({
+      from: process.env.REPORT_EMAIL_USER,
+      to: email,
+      subject: "Mapster Password Reset",
+      text: `You requested a password reset. Click the link below to reset your password:\n${resetUrl}\nIf you did not request this, please ignore this email.`,
+    });
+    res.json({ message: "Password reset email sent" });
+  } catch (err) {
+    res.status(500).json({ message: "Error sending reset email", error: err.message });
+  }
+});
+
+// Reset Password
+router.post("/reset-password", async (req, res) => {
+  const { email, token, newPassword } = req.body;
+  if (!email || !token || !newPassword) return res.status(400).json({ message: "Missing required fields" });
+  try {
+    const user = await User.findOne({ email, resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } });
+    if (!user) return res.status(400).json({ message: "Invalid or expired token" });
+    user.password = await bcrypt.hash(newPassword, 10);
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+    res.json({ message: "Password has been reset successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Error resetting password", error: err.message });
   }
 });
 

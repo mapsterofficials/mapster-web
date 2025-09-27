@@ -8,10 +8,13 @@ import ForgotPasswordPage from "./ForgotPasswordPage";
 import SettingsPage from "./SettingsPage";
 import SignUpPage from "./SignUpPage";
 import HomePage from "./HomePage";
+import ProtectedRoute from "./ProtectedRoute";
 import AboutUsPage from "./AboutUsPage";
 import ChooseDestinationPage from "./ChooseDestinationPage";
 import AccountPage from "./AccountPage";
 import NavigationPage from "./NavigationPage";
+import ReportIssuePage from "./ReportIssuePage";
+import ResetPasswordPage from "./ResetPasswordPage";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -48,11 +51,20 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPasswordPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/choosedestination" element={<ChooseDestinationPage />} />
         <Route path="/account" element={<AccountPage />} />
         <Route path="/navigation" element={<NavigationPage />} />
+        <Route path="/reportissue" element={<ReportIssuePage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Routes>
     </Router>
   );

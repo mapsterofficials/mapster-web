@@ -5,11 +5,13 @@ import path_icon from "../assets/path_icon.svg";
 import gps_icon from "../assets/gps_icon.svg";
 import "./AboutUsPage.css";
 import { useNavigate } from "react-router-dom";
+import MapsterHeader from "./MapsterHeader";
 
 function AboutUsPage() {
   const navigate = useNavigate();
   return (
     <div className="about-wrapper">
+      <MapsterHeader />
       <h2 className="about-title">About MAPSTER</h2>
       <img src={mapster_logo_large} alt="MAPSTER Logo" className="about-logo" />
       <p className="about-desc">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./ChooseDestinationPage.css";
+import MapsterHeader from "./MapsterHeader";
 
 const LOCATIONS = [
   "dummy location",
@@ -71,9 +72,7 @@ function ChooseDestinationPage() {
 
   return (
     <div className="choose-destination-container">
-      <div className="choose-destination-topbar">
-        <span className="choose-destination-title">MAPSTER</span>
-      </div>
+      <MapsterHeader />
       <div className="choose-destination-form">
         <label className="choose-destination-label">From</label>
         <input className="choose-destination-input" type="text" value={from} readOnly />

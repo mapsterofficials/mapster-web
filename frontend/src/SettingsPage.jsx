@@ -4,6 +4,7 @@ import "./SettingsPage.css";
 import profileIcon from "../assets/profile_icon.svg";
 import aboutIcon from "../assets/about_us_icon.svg";
 import darkIcon from "../assets/dark_mode_icon.svg";
+import MapsterHeader from "./MapsterHeader";
 
 function SettingsPage() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function SettingsPage() {
 
   return (
     <div className="settings-container">
+      <MapsterHeader />
       <div className="settings-topbar">
         <span className="settings-title">Account</span>
       </div>

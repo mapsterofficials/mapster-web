@@ -17,7 +17,7 @@ function SignUpPage() {
     setError("");
     setSuccess("");
     try {
-      const res = await fetch("http://localhost:8080/api/auth/signup", {
+      const res = await fetch("http://localhost:5000/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone, password }),
@@ -75,7 +75,7 @@ function SignUpPage() {
       {error && <div style={{ color: "#d32f2f", marginBottom: 8 }}>{error}</div>}
       {success && <div style={{ color: "#388e3c", marginBottom: 8 }}>{success}</div>}
       <FullWidthButton text="Sign Up" onClick={handleSignUp} />
-      <div className="sign-in-links" style={{ marginBottom: 0 }}>
+      <div className="sign-in-links" style={{ marginBottom: 24 }}>
         <div className="or-sign-in">or Sign up with</div>
       </div>
       <FullWidthButton
@@ -87,6 +87,18 @@ function SignUpPage() {
         }
         onClick={() => {}}
       />
+      <div style={{ textAlign: "center", marginTop: 16 }}>
+        <a
+          href="#"
+          className="forgot-password"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/signin");
+          }}
+        >
+          Already have an account?
+        </a>
+      </div>
     </div>
   );
 }

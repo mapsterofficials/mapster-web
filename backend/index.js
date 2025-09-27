@@ -4,6 +4,7 @@ import cors from "cors";
 import passport from "passport";
 import session from "express-session";
 import authRoutes from "./routes/auth.js";
+import reportIssueRoutes from "./routes/reportIssue.js";
 
 const app = express();
 app.use(express.json());
@@ -18,8 +19,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/report-issue", reportIssueRoutes);
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/mapster";
+import dotenv from "dotenv";
+dotenv.config();
+
+const MONGO_URI = process.env.MONGO_URI;
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB connected"))
