@@ -12,6 +12,7 @@ app.use(
   cors({
     origin: ["http://localhost:5173", "https://mapster-n6yw.onrender.com"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(session({ secret: "mapster_secret", resave: false, saveUninitialized: true }));
