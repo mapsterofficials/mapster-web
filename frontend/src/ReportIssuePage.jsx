@@ -24,16 +24,14 @@ function ReportIssuePage() {
     setLoading(true);
     setSuccessMsg("");
     try {
-      // Get user info from backend
       const token = localStorage.getItem("authToken");
-      const res = await fetch("http://localhost:5000/api/auth/me", {
+      const res = await fetch(`${process.env.VITE_API_URL}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       if (!data.user) throw new Error("Could not fetch user info");
       const { name, email } = data.user;
-      // Send report to backend
-      const reportRes = await fetch("http://localhost:5000/api/report-issue", {
+      const reportRes = await fetch(`${process.env.VITE_API_URL}/report-issue`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

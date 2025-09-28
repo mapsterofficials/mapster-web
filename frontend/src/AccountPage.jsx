@@ -17,7 +17,7 @@ function AccountPage() {
       navigate("/signin", { replace: true });
       return;
     }
-    fetch("http://localhost:8080/api/auth/me", {
+    fetch(`${process.env.VITE_API_URL}/auth/me`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -36,7 +36,7 @@ function AccountPage() {
     setError("");
     const token = localStorage.getItem("authToken");
     try {
-      const res = await fetch("http://localhost:8080/api/auth/update", {
+      const res = await fetch(`${process.env.VITE_API_URL}/auth/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
