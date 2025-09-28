@@ -51,14 +51,7 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPasswordPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/choosedestination" element={<ChooseDestinationPage />} />
         <Route path="/account" element={<AccountPage />} />
