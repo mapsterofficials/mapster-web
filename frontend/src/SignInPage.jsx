@@ -80,12 +80,11 @@ function SignInPage() {
       </div>
       {error && <div style={{ color: "#d32f2f", marginBottom: 8 }}>{error}</div>}
       {success && <div style={{ color: "#388e3c", marginBottom: 8 }}>{success}</div>}
-      <FullWidthButton text={loading ? "Signing in..." : "Sign in"} onClick={handleSignIn} disabled={loading} />
-      {loading && (
-        <div style={{ display: "flex", justifyContent: "center", margin: "16px 0" }}>
-          <div className="loader" />
-        </div>
-      )}
+      <FullWidthButton
+        text={loading ? <div className="loader" style={{ display: "inline-block", verticalAlign: "middle" }} /> : "Sign in"}
+        onClick={handleSignIn}
+        disabled={loading}
+      />
       <div className="sign-in-links">
         <a
           href="#"

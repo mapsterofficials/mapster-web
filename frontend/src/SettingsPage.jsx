@@ -9,10 +9,14 @@ import MapsterHeader from "./MapsterHeader";
 function SettingsPage() {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    window.location.href = "/signin";
+    setLoading(true);
+    setTimeout(() => {
+      localStorage.removeItem("authToken");
+      window.location.href = "/signin";
+    }, 800);
   };
 
   return (
@@ -41,8 +45,8 @@ function SettingsPage() {
           </label>
         </div>
       </div>
-      <button className="settings-logout-btn" onClick={handleLogout}>
-        log out
+      <button className="settings-logout-btn" onClick={handleLogout} disabled={loading}>
+        {loading ? <div className="loader" style={{ display: "inline-block", verticalAlign: "middle" }} /> : "log out"}
       </button>
     </div>
   );

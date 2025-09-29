@@ -78,12 +78,11 @@ function SignUpPage() {
       </div>
       {error && <div style={{ color: "#d32f2f", marginBottom: 8 }}>{error}</div>}
       {success && <div style={{ color: "#388e3c", marginBottom: 8 }}>{success}</div>}
-      <FullWidthButton text={loading ? "Signing up..." : "Sign Up"} onClick={handleSignUp} disabled={loading} />
-      {loading && (
-        <div style={{ display: "flex", justifyContent: "center", margin: "16px 0" }}>
-          <div className="loader" />
-        </div>
-      )}
+      <FullWidthButton
+        text={loading ? <div className="loader" style={{ display: "inline-block", verticalAlign: "middle" }} /> : "Sign Up"}
+        onClick={handleSignUp}
+        disabled={loading}
+      />
       <div className="sign-in-links" style={{ marginBottom: 24 }}>
         <div className="or-sign-in">or Sign up with</div>
       </div>

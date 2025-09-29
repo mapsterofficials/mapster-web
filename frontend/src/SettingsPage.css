@@ -101,11 +101,11 @@
 }
 .settings-logout-btn {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 32px);
+  left: 0;
+  right: 0;
   bottom: 32px;
-  height: 44px;
+  width: calc(100% - 32px);
+  margin: 0 auto;
   background: #232a54;
   color: #fff;
   font-size: 16px;
@@ -113,4 +113,5 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  max-width: 400px;
 }
