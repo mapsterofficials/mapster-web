@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_BASE_URL } from "./constants";
 import { useNavigate } from "react-router-dom";
 import "./ReportIssuePage.css";
 import MapsterHeader from "./MapsterHeader";
@@ -25,13 +26,13 @@ function ReportIssuePage() {
     setSuccessMsg("");
     try {
       const token = localStorage.getItem("authToken");
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/me`, {
+      const res = await fetch(`${API_BASE_URL}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       if (!data.user) throw new Error("Could not fetch user info");
       const { name, email } = data.user;
-      const reportRes = await fetch(`${import.meta.env.VITE_API_URL}/report-issue`, {
+      const reportRes = await fetch(`${API_BASE_URL}/report-issue`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

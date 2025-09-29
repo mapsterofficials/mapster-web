@@ -4,6 +4,7 @@ import FullWidthButton from "./FullWidthButton";
 import "./SignInPage.css";
 
 import { useState } from "react";
+import { API_BASE_URL } from "./constants";
 import { useNavigate } from "react-router-dom";
 import MapsterHeader from "./MapsterHeader";
 
@@ -19,7 +20,7 @@ function SignInPage() {
     setError("");
     setSuccess("");
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/signin`, {
+      const res = await fetch(`${API_BASE_URL}/auth/signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
