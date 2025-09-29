@@ -14,11 +14,13 @@ function SignInPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSignIn() {
     setError("");
     setSuccess("");
+    setLoading(true);
     try {
       const res = await fetch(`${API_BASE_URL}/auth/signin`, {
         method: "POST",
@@ -39,6 +41,8 @@ function SignInPage() {
       }
     } catch (err) {
       setError("Network error");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -76,7 +80,12 @@ function SignInPage() {
       </div>
       {error && <div style={{ color: "#d32f2f", marginBottom: 8 }}>{error}</div>}
       {success && <div style={{ color: "#388e3c", marginBottom: 8 }}>{success}</div>}
-      <FullWidthButton text="Sign in" onClick={handleSignIn} />
+      <FullWidthButton text={loading ? "Signing in..." : "Sign in"} onClick={handleSignIn} disabled={loading} />
+      {loading && (
+        <div style={{ display: "flex", justifyContent: "center", margin: "16px 0" }}>
+          <div className="loader" />
+        </div>
+      )}
       <div className="sign-in-links">
         <a
           href="#"

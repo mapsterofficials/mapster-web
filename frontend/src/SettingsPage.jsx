@@ -10,6 +10,11 @@ function SettingsPage() {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(false);
 
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    window.location.href = "/signin";
+  };
+
   return (
     <div className="settings-container">
       <MapsterHeader />
@@ -36,13 +41,7 @@ function SettingsPage() {
           </label>
         </div>
       </div>
-      <button
-        className="settings-logout-btn"
-        onClick={() => {
-          localStorage.removeItem("authToken");
-          navigate("/signin", { replace: true });
-        }}
-      >
+      <button className="settings-logout-btn" onClick={handleLogout}>
         log out
       </button>
     </div>

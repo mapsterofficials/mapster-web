@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://mapster-n6yw.onrender.com"],
+    origin: ["http://localhost:5173", "https://mapster-p8np.onrender.com/"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
   })

@@ -11,11 +11,13 @@ function SignUpPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSignUp() {
     setError("");
     setSuccess("");
+    setLoading(true);
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
         method: "POST",
@@ -36,6 +38,8 @@ function SignUpPage() {
       }
     } catch (err) {
       setError("Network error");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -74,7 +78,12 @@ function SignUpPage() {
       </div>
       {error && <div style={{ color: "#d32f2f", marginBottom: 8 }}>{error}</div>}
       {success && <div style={{ color: "#388e3c", marginBottom: 8 }}>{success}</div>}
-      <FullWidthButton text="Sign Up" onClick={handleSignUp} />
+      <FullWidthButton text={loading ? "Signing up..." : "Sign Up"} onClick={handleSignUp} disabled={loading} />
+      {loading && (
+        <div style={{ display: "flex", justifyContent: "center", margin: "16px 0" }}>
+          <div className="loader" />
+        </div>
+      )}
       <div className="sign-in-links" style={{ marginBottom: 24 }}>
         <div className="or-sign-in">or Sign up with</div>
       </div>
