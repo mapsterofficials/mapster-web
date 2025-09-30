@@ -18,6 +18,9 @@ function HomePage() {
   const [suggestions, setSuggestions] = useState([]);
   const [locationCheckMessage, setLocationCheckMessage] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
+  const [torchOn, setTorchOn] = useState(false);
+  const [flashMessage, setFlashMessage] = useState("");
+  const html5QrCodeRef = useRef(null);
   const LOCATIONS = [
     "306 IPDC Lab",
     "307B Control/Comm Lab",
@@ -65,6 +68,7 @@ function HomePage() {
     let isRunning = false;
     if (qrRef.current) {
       html5QrCode = new Html5Qrcode("qr-reader-homepage");
+      html5QrCodeRef.current = html5QrCode;
       html5QrCode
         .start(
           { facingMode: "environment" },
@@ -102,6 +106,7 @@ function HomePage() {
         html5QrCode.stop().catch(() => {});
         isRunning = false;
       }
+      html5QrCodeRef.current = null;
     };
   }, []);
 
@@ -171,6 +176,7 @@ function HomePage() {
       {cameraError && <div className="homepage-camera-error">{cameraError}</div>}
       {imageScanMessage && <div className="homepage-camera-error">{imageScanMessage}</div>}
       {locationCheckMessage && <div className="homepage-camera-error">{locationCheckMessage}</div>}
+      {flashMessage && <div className="homepage-camera-error">{flashMessage}</div>}
 
       <div className="homepage-bottombar">
         <button className="homepage-bottombar-btn" onClick={() => fileInputRef.current && fileInputRef.current.click()}>
@@ -207,7 +213,28 @@ function HomePage() {
         <button className="homepage-bottombar-btn camera">
           <img className="camera_icon" src={camera_icon} alt="Camera" />
         </button>
-        <button className="homepage-bottombar-btn">
+        <button
+          className="homepage-bottombar-btn"
+          onClick={() => {
+            setFlashMessage("");
+            const qrInstance = html5QrCodeRef.current;
+            if (qrInstance && typeof qrInstance.isTorchSupported === "function" && qrInstance.isTorchSupported()) {
+              if (!torchOn) {
+                qrInstance
+                  .turnOnTorch()
+                  .then(() => setTorchOn(true))
+                  .catch(() => setFlashMessage("Failed to turn on flashlight."));
+              } else {
+                qrInstance
+                  .turnOffTorch()
+                  .then(() => setTorchOn(false))
+                  .catch(() => setFlashMessage("Failed to turn off flashlight."));
+              }
+            } else {
+              setFlashMessage("Flashlight is not supported on this device/browser.");
+            }
+          }}
+        >
           <img className="flash_icon" src={flash_icon} alt="Flash" />
         </button>
       </div>
