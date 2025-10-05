@@ -1,5 +1,4 @@
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-// Google OAuth strategy setup
 passport.use(
   new GoogleStrategy(
     {
@@ -8,7 +7,6 @@ passport.use(
       callbackURL: `${process.env.BACKEND_URL || "http://localhost:5000"}/api/auth/google/callback`,
     },
     async (accessToken, refreshToken, profile, done) => {
-      // Pass Google profile to the route
       return done(null, profile);
     }
   )
@@ -35,7 +33,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://mapster-p8np.onrender.com/"],
+    origin: ["http://localhost:5173", "https://mapster-p8np.onrender.com"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
   })
