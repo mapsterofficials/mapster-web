@@ -6,7 +6,6 @@ import "./SignInPage.css";
 import { useState } from "react";
 import { API_BASE_URL } from "./constants";
 import { useNavigate } from "react-router-dom";
-import MapsterHeader from "./MapsterHeader";
 
 function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -48,7 +47,6 @@ function SignInPage() {
 
   return (
     <div className="sign-in-wrapper">
-      <MapsterHeader />
       <img className="sign-in-logo" src={mapster_logo} alt="Logo" />
       <div className="input-group">
         <input type="email" className="sign-in-input" placeholder="Email id" value={email} onChange={(e) => setEmail(e.target.value)} />

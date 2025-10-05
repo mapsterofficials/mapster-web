@@ -6,6 +6,7 @@ import gallery_icon from "../assets/gallery_icon.svg";
 import flash_icon from "../assets/flash_icon.svg";
 import camera_icon from "../assets/camera_icon.svg";
 import MapsterTopbar from "./MapsterTopbar";
+import "./MapsterTopbar.css";
 
 function HomePage() {
   const navigate = useNavigate();

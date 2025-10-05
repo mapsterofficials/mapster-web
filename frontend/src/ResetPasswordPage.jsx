@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import FullWidthButton from "./FullWidthButton";
 import "./ForgotPasswordPage.css";
-import MapsterHeader from "./MapsterHeader";
+import MapsterTopbar from "./MapsterTopbar";
 
 function ResetPasswordPage() {
   const [searchParams] = useSearchParams();
@@ -59,7 +59,7 @@ function ResetPasswordPage() {
 
   return (
     <div className="forgot-wrapper">
-      <MapsterHeader />
+      <MapsterTopbar />
       <h3 className="forgot-title">Reset Password</h3>
       <p className="reset-desc">Enter your new password below.</p>
       <input

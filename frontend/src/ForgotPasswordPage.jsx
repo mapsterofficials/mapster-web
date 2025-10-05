@@ -1,7 +1,6 @@
 import { useState } from "react";
 import FullWidthButton from "./FullWidthButton";
 import "./ForgotPasswordPage.css";
-import MapsterHeader from "./MapsterHeader";
 
 function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -37,7 +36,6 @@ function ForgotPasswordPage() {
 
   return (
     <div className="forgot-wrapper">
-      <MapsterHeader />
       <h3 className="forgot-title">Forgot Password</h3>
       <h2 className="reset-title">Reset your password</h2>
       <p className="reset-desc">
