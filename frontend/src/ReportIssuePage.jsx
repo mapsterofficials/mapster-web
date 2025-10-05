@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { API_BASE_URL } from "./constants";
 import { useNavigate } from "react-router-dom";
 import "./ReportIssuePage.css";
-import MapsterHeader from "./MapsterHeader";
+import MapsterTopbar from "./MapsterTopbar";
 
 function ReportIssuePage() {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ function ReportIssuePage() {
 
   return (
     <div className="report-issue-container">
-      <MapsterHeader />
+      <MapsterTopbar />
       <h2 className="report-issue-title">Report an Issue</h2>
       <p className="report-issue-desc">Please describe your issue below. Your name and email will be recorded when you send this report.</p>
       <form onSubmit={handleSubmit}>

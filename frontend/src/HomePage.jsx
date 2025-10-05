@@ -5,8 +5,7 @@ import "./HomePage.css";
 import gallery_icon from "../assets/gallery_icon.svg";
 import flash_icon from "../assets/flash_icon.svg";
 import camera_icon from "../assets/camera_icon.svg";
-import gear_icon from "../assets/gear_icon.svg";
-import chat_icon from "../assets/chat_icon.svg";
+import MapsterTopbar from "./MapsterTopbar";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -112,15 +111,7 @@ function HomePage() {
 
   return (
     <div className="homepage-container">
-      <div className="homepage-topbar">
-        <button className="homepage-topbar-btn" onClick={() => navigate("/settings")}>
-          <img className="gear_icon" src={gear_icon} alt="Settings" />
-        </button>
-        <span className="homepage-title">MAPSTER</span>
-        <button className="homepage-topbar-btn" onClick={() => navigate("/reportissue")}>
-          <img className="chat_icon" src={chat_icon} alt="Report Issue" />
-        </button>
-      </div>
+      <MapsterTopbar />
 
       <div className="homepage-location-wrapper">
         <div className="homepage-location-input-row">

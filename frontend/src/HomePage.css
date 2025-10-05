@@ -172,8 +172,8 @@
 }
 
 .homepage-qr-square {
-  width: 220px;
-  height: 220px;
+  width: 300px;
+  height: 300px;
   border: 3px solid #232a54;
   border-radius: 16px;
   background: linear-gradient(to bottom, #eaeaea 0%, #f8f6fa 100%);

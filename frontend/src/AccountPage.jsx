@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./AccountPage.css";
 import { useNavigate } from "react-router-dom";
-import MapsterHeader from "./MapsterHeader";
+import MapsterTopbar from "./MapsterTopbar";
 
 function AccountPage() {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ function AccountPage() {
 
   return (
     <div className="account-container">
-      <MapsterHeader />
+      <MapsterTopbar />
       <div className="account-topbar">
         <span className="account-title">Profile</span>
       </div>

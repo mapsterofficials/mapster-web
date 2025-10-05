@@ -7,6 +7,7 @@ import rightArrowIcon from "../assets/right_arrow_icon.svg";
 import leftArrowIcon from "../assets/left_arrow_icon.svg";
 import passageIcon from "../assets/passage_icon.svg";
 import endNavIcon from "../assets/end_nav_icon.svg";
+import MapsterTopbar from "./MapsterTopbar";
 
 function NavigationPage() {
   const navigate = useNavigate();
@@ -323,9 +324,7 @@ function NavigationPage() {
 
   return (
     <div className="navigation-container">
-      <div className="navigation-topbar">
-        <span className="navigation-title">MAPSTER</span>
-      </div>
+      <MapsterTopbar />
       <div className="navigation-header-row">
         <span className="navigation-from-label">From: {fromLocation}</span>
         {toLocation && <span className="navigation-to-label">To: {toLocation}</span>}
