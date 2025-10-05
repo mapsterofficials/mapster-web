@@ -8,13 +8,14 @@ import ForgotPasswordPage from "./ForgotPasswordPage";
 import SettingsPage from "./SettingsPage";
 import SignUpPage from "./SignUpPage";
 import HomePage from "./HomePage";
-import ProtectedRoute from "./ProtectedRoute";
 import AboutUsPage from "./AboutUsPage";
 import ChooseDestinationPage from "./ChooseDestinationPage";
 import AccountPage from "./AccountPage";
 import NavigationPage from "./NavigationPage";
 import ReportIssuePage from "./ReportIssuePage";
 import ResetPasswordPage from "./ResetPasswordPage";
+
+import GoogleAuthCallback from "./GoogleAuthCallback";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -58,6 +59,7 @@ function App() {
         <Route path="/navigation" element={<NavigationPage />} />
         <Route path="/reportissue" element={<ReportIssuePage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/google-auth-callback" element={<GoogleAuthCallback />} />
       </Routes>
     </Router>
   );

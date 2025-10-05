@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FullWidthButton from "./FullWidthButton";
-import google_icon from "../assets/google.png";
 
 function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -82,18 +81,6 @@ function SignUpPage() {
         text={loading ? <div className="loader" style={{ display: "inline-block", verticalAlign: "middle" }} /> : "Sign Up"}
         onClick={handleSignUp}
         disabled={loading}
-      />
-      <div className="sign-in-links" style={{ marginBottom: 24 }}>
-        <div className="or-sign-in">or Sign up with</div>
-      </div>
-      <FullWidthButton
-        text={
-          <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
-            <img src={google_icon} alt="Google" style={{ width: 24, height: 24 }} />
-            Sign up with Google
-          </span>
-        }
-        onClick={() => {}}
       />
       <div style={{ textAlign: "center", marginTop: 16 }}>
         <a

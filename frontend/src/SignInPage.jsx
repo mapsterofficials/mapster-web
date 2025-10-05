@@ -105,7 +105,9 @@ function SignInPage() {
             Sign in with Google
           </span>
         }
-        onClick={() => {}}
+        onClick={() => {
+          window.location.href = `${API_BASE_URL}/auth/google`;
+        }}
       />
       <a
         href="#"

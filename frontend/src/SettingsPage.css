@@ -5,9 +5,7 @@
   padding: 0;
   font-family: "Inter", sans-serif;
 }
-.settings-container.dark {
-  background: #232a54;
-}
+
 .settings-topbar {
   display: flex;
   align-items: center;
@@ -46,15 +44,7 @@
   margin-right: 16px;
   display: inline-block;
 }
-.settings-icon.profile {
-  background: url("./assets/profile_icon.svg") no-repeat center/contain;
-}
-.settings-icon.about {
-  background: url("./assets/about_icon.svg") no-repeat center/contain;
-}
-.settings-icon.dark {
-  background: url("./assets/dark_icon.svg") no-repeat center/contain;
-}
+
 .settings-label {
   flex: 1;
 }

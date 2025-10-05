@@ -103,24 +103,7 @@
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 400;
 }
-.navigation-eta-btn,
-.navigation-speed-btn {
-  width: 90%;
-  margin: 0 auto 12px auto;
-  display: block;
-  height: 44px;
-  background: #232a54;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-family: "Plus Jakarta Sans", sans-serif;
-}
-.navigation-speed-btn {
-  margin-bottom: 24px;
-}
+
 .navigation-info-row {
   width: 90%;
   margin: 0 auto 24px auto;

@@ -8,15 +8,6 @@
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
-.report-issue-back-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  margin-top: 24px;
-  align-self: flex-start;
-  cursor: pointer;
-}
-
 .report-issue-title {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 22px;

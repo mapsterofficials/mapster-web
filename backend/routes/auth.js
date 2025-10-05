@@ -4,8 +4,11 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
 import User from "../models/User.js";
+import { OAuth2Client } from "google-auth-library";
 
 const router = express.Router();
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 router.post("/signup", async (req, res) => {
   const { name, email, phone, password } = req.body;
@@ -14,7 +17,7 @@ router.post("/signup", async (req, res) => {
     if (existingUser) return res.status(400).json({ message: "User already exists" });
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ name, email, phone, password: hashedPassword });
-    const token = jwt.sign({ id: user._id, email: user.email }, "mapster_jwt_secret", { expiresIn: "1d" });
+    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" });
     res.status(201).json({ token, user });
   } catch (err) {
     res.status(500).json({ message: "Error creating user", error: err });
@@ -28,10 +31,45 @@ router.post("/signin", async (req, res) => {
     if (!user) return res.status(400).json({ message: "User not found" });
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(400).json({ message: "Invalid password" });
-    const token = jwt.sign({ id: user._id, email: user.email }, "mapster_jwt_secret", { expiresIn: "1d" });
+    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" });
     res.json({ token, user });
   } catch (err) {
     res.status(500).json({ message: "Error signing in", error: err });
+  }
+});
+
+router.post("/google", async (req, res) => {
+  try {
+    const { credential } = req.body;
+
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const { email, name } = payload;
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = new User({
+        email,
+        name,
+        googleId,
+      });
+      await user.save();
+    } else if (!user.googleId) {
+      user.googleId = googleId;
+      await user.save();
+    }
+
+    const token = jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "7d" });
+
+    res.json({ token, user });
+  } catch (error) {
+    console.error("Google auth error:", error);
+    res.status(401).json({ message: "Invalid Google token" });
   }
 });
 
@@ -39,7 +77,7 @@ function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) return res.status(401).json({ message: "No token provided" });
-  jwt.verify(token, "mapster_jwt_secret", (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ message: "Invalid token" });
     req.user = user;
     next();
