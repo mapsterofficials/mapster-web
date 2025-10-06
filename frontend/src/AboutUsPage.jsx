@@ -1,4 +1,5 @@
 import mapster_logo_large from "../assets/mapster_logo_large.png";
+import mapster_logo_white from "../assets/mapster_logo_white.svg";
 import qr_icon from "../assets/qr_icon.svg";
 import fast_icon from "../assets/fast_icon.svg";
 import path_icon from "../assets/path_icon.svg";
@@ -9,12 +10,13 @@ import MapsterTopbar from "./MapsterTopbar";
 
 function AboutUsPage() {
   const navigate = useNavigate();
+  const isDarkMode = localStorage.getItem("darkMode") === "true" || document.body.classList.contains("dark-mode");
   return (
     <div className="about-container">
       <MapsterTopbar />
       <div className="about-wrapper">
         <h2 className="about-title">About MAPSTER</h2>
-        <img src={mapster_logo_large} alt="MAPSTER Logo" className="about-logo" />
+        <img src={isDarkMode ? mapster_logo_white : mapster_logo_large} alt="MAPSTER Logo" className="about-logo" />
         <p className="about-desc">
           MAPSTER is an innovative Indoor Navigation System designed to help users easily find their way inside large buildings such as
           malls, hospitals, offices, and universities. The app utilizes QR code-based localization along with an intelligent pathfinding

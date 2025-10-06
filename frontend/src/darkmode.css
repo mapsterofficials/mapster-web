@@ -1,0 +1,128 @@
+body.dark-mode {
+  background: #181a20 !important;
+  color: #f1f1f1 !important;
+}
+
+body.dark-mode .settings-container,
+body.dark-mode .mapster-topbar,
+body.dark-mode .settings-list-item,
+body.dark-mode .about-wrapper,
+body.dark-mode .account-container,
+body.dark-mode .choose-destination-container,
+body.dark-mode .navigation-container,
+body.dark-mode .report-issue-container,
+body.dark-mode .homepage-container {
+  background: #23242a !important;
+  color: #f1f1f1 !important;
+}
+
+body.dark-mode .mapster-title,
+body.dark-mode .settings-title,
+body.dark-mode .about-title,
+body.dark-mode .account-title,
+body.dark-mode .choose-destination-title,
+body.dark-mode .navigation-title,
+body.dark-mode .report-issue-title,
+body.dark-mode .navigation-from-label,
+body.dark-mode .navigation-to-label,
+body.dark-mode .navigation-step-dot,
+body.dark-mode .navigation-step-row,
+body.dark-mode .navigation-step-icon,
+body.dark-mode .navigation-step-vertical-line,
+body.dark-mode .navigation-step-text,
+body.dark-mode .reset-desc,
+body.dark-mode .account-label,
+body.dark-mode .about-desc,
+body.dark-mode .about-section-content,
+body.dark-mode .about-team-role,
+body.dark-mode .report-issue-desc,
+body.dark-mode .choose-destination-label,
+body.dark-mode .homepage-title {
+  color: #fff !important;
+}
+
+body.dark-mode .settings-list-item,
+body.dark-mode .settings-list-item:active,
+body.dark-mode .settings-list-item:focus {
+  background: #23242a !important;
+  color: #f1f1f1 !important;
+}
+
+body.dark-mode .settings-list-item:hover {
+  background: #282a32 !important;
+}
+
+body.dark-mode .settings-switch .settings-slider {
+  background-color: #444 !important;
+}
+body.dark-mode .settings-switch input:checked + .settings-slider {
+  background-color: #fff !important;
+}
+body.dark-mode .settings-slider:before {
+  background-color: #23242a !important;
+}
+
+body.dark-mode .mapster-topbar-btn img,
+body.dark-mode .settings-icon {
+  filter: brightness(0.8) invert(0.8);
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background: #23242a !important;
+  color: #f1f1f1 !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode .homepage-qr-square {
+  background: #23242a !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode .homepage-bottombar {
+  background: #23242a !important;
+}
+
+body.dark-mode .homepage-bottombar-btn {
+  color: #f1f1f1 !important;
+}
+
+body.dark-mode .homepage-bottombar-btn.camera {
+  background: #444 !important;
+  color: #fff !important;
+}
+
+body.dark-mode .about-section {
+  background: #23242a !important;
+  color: #f1f1f1 !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode .about-section-title {
+  color: #fff !important;
+}
+
+body.dark-mode .about-team-name {
+  color: #756387 !important;
+}
+
+body.dark-mode .report-issue-textarea {
+  background: #23242a !important;
+  color: #f1f1f1 !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode .choose-destination-input,
+body.dark-mode .homepage-location-input,
+body.dark-mode .choose-destination-suggestion-item,
+body.dark-mode .home-suggestion-item {
+  background: #555 !important;
+  color: #f1f1f1 !important;
+  border-color: #444 !important;
+}
+
+body.dark-mode .account-input {
+  background: #555 !important;
+  color: #f1f1f1 !important;
+  border-color: #444 !important;
+}

@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./NavigationPage.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import stairIcon from "../assets/stair_icon.svg";
+import stairIconWhite from "../assets/stair_icon_white.svg";
 import walkIcon from "../assets/walk_icon.svg";
+import walkIconWhite from "../assets/walk_icon_white.svg";
 import rightArrowIcon from "../assets/right_arrow_icon.svg";
+import rightArrowIconWhite from "../assets/right_arrow_icon_white.svg";
 import leftArrowIcon from "../assets/left_arrow_icon.svg";
+import leftArrowIconWhite from "../assets/left_arrow_icon_white.svg";
 import passageIcon from "../assets/passage_icon.svg";
+import passageIconWhite from "../assets/passage_icon_white.svg";
 import endNavIcon from "../assets/end_nav_icon.svg";
+import endNavIconWhite from "../assets/end_nav_icon_white.svg";
 import MapsterTopbar from "./MapsterTopbar";
 
 function NavigationPage() {
@@ -154,17 +160,17 @@ function NavigationPage() {
     const lowerDirection = directionText.toLowerCase();
 
     if (lowerDirection.includes("right")) {
-      return rightArrowIcon;
+      return isDarkMode ? rightArrowIconWhite : rightArrowIcon;
     } else if (lowerDirection.includes("left")) {
-      return leftArrowIcon;
+      return isDarkMode ? leftArrowIconWhite : leftArrowIcon;
     } else if (lowerDirection.includes("straight") || lowerDirection.includes("go")) {
-      return walkIcon;
+      return isDarkMode ? walkIconWhite : walkIcon;
     } else if (lowerDirection.includes("stair") || lowerDirection.includes("elevator") || lowerDirection.includes("lift")) {
-      return stairIcon;
+      return isDarkMode ? stairIconWhite : stairIcon;
     } else if (lowerDirection.includes("passage") || lowerDirection.includes("corridor")) {
-      return passageIcon;
+      return isDarkMode ? passageIconWhite : passageIcon;
     } else {
-      return walkIcon;
+      return isDarkMode ? walkIconWhite : walkIcon;
     }
   };
 
@@ -230,7 +236,7 @@ function NavigationPage() {
     if (!floorGraph[fromLocation] || !floorGraph[toLocation]) {
       setSteps([
         {
-          icon: endNavIcon,
+          icon: isDarkMode ? endNavIconWhite : endNavIcon,
           text: `Invalid location: ${!floorGraph[fromLocation] ? fromLocation : toLocation} not found in building map.`,
           time: null,
         },
@@ -244,7 +250,7 @@ function NavigationPage() {
     if (fromLocation === toLocation) {
       setSteps([
         {
-          icon: endNavIcon,
+          icon: isDarkMode ? endNavIconWhite : endNavIcon,
           text: "You are already at your destination!",
           time: null,
         },
@@ -262,7 +268,7 @@ function NavigationPage() {
     if (!pathDirections || pathDirections.length === 0) {
       setSteps([
         {
-          icon: endNavIcon,
+          icon: isDarkMode ? endNavIconWhite : endNavIcon,
           text: "No path found to destination.",
           time: null,
         },
@@ -291,7 +297,7 @@ function NavigationPage() {
       location: toLocation,
       direction: "arrive",
       distance: 0,
-      icon: endNavIcon,
+      icon: isDarkMode ? endNavIconWhite : endNavIcon,
       text: `Arrive at ${toLocation}`,
     });
 
@@ -321,7 +327,7 @@ function NavigationPage() {
     //   return `${(timeMs * 1000000).toFixed(0)} ns`;
     // }
   };
-
+  const isDarkMode = localStorage.getItem("darkMode") === "true" || document.body.classList.contains("dark-mode");
   return (
     <div className="navigation-container">
       <MapsterTopbar />

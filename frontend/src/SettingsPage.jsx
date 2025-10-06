@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SettingsPage.css";
 import profileIcon from "../assets/profile_icon.svg";
@@ -8,8 +8,20 @@ import MapsterTopbar from "./MapsterTopbar";
 
 function SettingsPage() {
   const navigate = useNavigate();
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const stored = localStorage.getItem("darkMode");
+    return stored === "true";
+  });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   const handleLogout = () => {
     setLoading(true);
