@@ -40,6 +40,7 @@ function ReportIssuePage() {
         },
         body: JSON.stringify({ description, name, email }),
       });
+      console.log(reportRes);
       if (!reportRes.ok) throw new Error("Failed to send report");
       setDescription("");
       setSuccessMsg("Thank you for your report! Updates regarding your issue will be sent to your email.");
