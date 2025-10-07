@@ -36,7 +36,7 @@ function AccountPage() {
     setError("");
     const token = localStorage.getItem("authToken");
     try {
-      const res = await fetch(`${import.meta.envVITE_API_URL}/auth/update`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
