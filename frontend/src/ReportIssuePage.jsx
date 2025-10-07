@@ -32,7 +32,7 @@ function ReportIssuePage() {
       const data = await res.json();
       if (!data.user) throw new Error("Could not fetch user info");
       const { name, email } = data.user;
-      const reportRes = await fetch(`${API_BASE_URL}/report-issue`, {
+      const reportRes = await fetch(`${API_BASE_URL}/api/report-issue`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
